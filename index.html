@@ -91,12 +91,6 @@
     overflow:hidden;
     padding:88px 0 100px;
   }
-  .hero-swoosh{
-    position:absolute; top:-120px; right:-180px;
-    width:640px; height:640px;
-    opacity:0.9;
-    pointer-events:none;
-  }
   .hero-inner{
     position:relative; z-index:2;
     display:grid;
@@ -191,9 +185,7 @@
   .mission-list span{color:var(--ink); font-weight:500;}
 
   /* ---------- Sectors ---------- */
-  .sector-row{
-    border-top:1px solid var(--line);
-  }
+  .sector-row{border-top:1px solid var(--line);}
   .sector-item{
     display:grid;
     grid-template-columns:60px 1fr 1fr;
@@ -202,9 +194,7 @@
     border-bottom:1px solid var(--line);
     align-items:center;
   }
-  .sector-item .sector-icon{
-    width:44px; height:44px;
-  }
+  .sector-item .sector-icon{width:44px; height:44px;}
   .sector-item h3{font-size:1.2rem; font-weight:700;}
   .sector-item p{color:var(--gray-dark); font-size:0.98rem;}
 
@@ -212,7 +202,6 @@
   .product-grid{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
-    gap:0;
     border-top:1px solid var(--line);
     border-left:1px solid var(--line);
   }
@@ -276,6 +265,8 @@
   }
   .form-field textarea{resize:vertical; min-height:100px;}
   form.contact-form .btn{width:100%; text-align:center; border:none; cursor:pointer;}
+  
+  #form-result { margin-top: 15px; font-size: 0.95rem; font-weight: 600; text-align: center; }
 
   /* ---------- Footer ---------- */
   footer{
@@ -298,7 +289,6 @@
     font-size:0.85rem; color:#8B9186;
   }
 
-  /* ---------- Responsive ---------- */
   @media (max-width:920px){
     nav.main-nav{display:none;}
     .menu-toggle{display:block;}
@@ -312,24 +302,9 @@
     .form-row{grid-template-columns:1fr;}
     .hero h1{font-size:2.3rem;}
   }
-  @media (max-width:520px){
-    .wrap{padding:0 20px;}
-    .header-inner{padding:12px 20px;}
-    .hero{padding:56px 0 70px;}
-    .product-grid{grid-template-columns:1fr;}
-    .hero-stats{gap:24px;}
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important; animation:none !important;}
-  }
-
-  .reveal{opacity:0; transform:translateY(14px); animation:rise .7s ease forwards;}
-  @keyframes rise{to{opacity:1; transform:translateY(0);}}
 </style>
 </head>
-<body>
+<body id="top">
 
 <header>
   <div class="header-inner">
@@ -340,204 +315,177 @@
       <a href="#about">À propos</a>
       <a href="#sectors">Secteurs</a>
       <a href="#products">Produits</a>
-      <a href="#why">Engagements</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="tel:+213" class="call-pill">
-      <span>Appeler</span>
-    </a>
+    <a href="#contact" class="call-pill">Nous contacter</a>
   </div>
 </header>
 
 <main>
-  <section class="hero" id="top">
-    <div class="wrap">
-      <div class="hero-inner">
-        <div>
-          <span class="eyebrow-note">Solutions vétérinaires professionnelles</span>
-          <h1>La santé et le bien-être animal au <em>cœur</em> de notre expertise</h1>
-          <p class="lead">Distributeur de confiance en produits pharmaceutiques, biologiques et nutritionnels pour l'élevage et les animaux de compagnie.</p>
-          <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary">Nous contacter</a>
-            <a href="#products" class="btn btn-outline">Découvrir nos gammes</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow-note">Distribution Vétérinaire Professionnelle</div>
+        <h1>L'excellence au service de la <em>santé animale</em></h1>
+        <p class="lead">Partenaire de confiance des éleveurs et des professionnels de la santé animale, PROVET assure la fourniture de produits vétérinaires de haute qualité.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Demander un devis</a>
+          <a href="#products" class="btn btn-outline">Nos produits</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="num">+15 ans</div>
+            <div class="label">d'expérience</div>
           </div>
-          <div class="hero-stats">
-            <div>
-              <div class="num">+15</div>
-              <div class="label">Ans d'expérience</div>
-            </div>
-            <div>
-              <div class="num">100%</div>
-              <div class="label">Conforme & Sécurisé</div>
-            </div>
+          <div>
+            <div class="num">100%</div>
+            <div class="label">Conforme</div>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="leaf-card">
-            <div class="divider"></div>
-            <p>Accompagnement technique et scientifique dédié aux professionnels de la santé animale.</p>
-          </div>
+      </div>
+      <div class="hero-visual">
+        <div class="leaf-card">
+          <p>Solutions innovantes et sûres pour le bien-être et la performance de vos élevages.</p>
+          <div class="divider"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" id="about">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="tag">À propos de PROVET</span>
-        <h2>Un engagement constant pour la qualité de l'élevage</h2>
-        <p>Nous mettons à disposition des vétérinaires et des éleveurs des solutions innovantes, rigoureusement sélectionnées auprès des meilleurs laboratoires mondiaux.</p>
+  <!-- About Section -->
+  <section id="about" class="section-alt">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head">
+          <span class="tag">À PROPOS DE NOUS</span>
+          <h2>Un engagement total pour la santé et la performance animale</h2>
+        </div>
       </div>
-      <div class="about-grid">
-        <div class="about-figure">
-          <h3>Expertise & Rigueur</h3>
-          <p style="margin-top: 15px;">Notre structure assure une traçabilité irréprochable et un stockage respectant les normes les plus strictes de la chaîne du froid.</p>
-        </div>
-        <div class="about-copy">
-          <p>PROVET Santé Animale s'impose comme un acteur clé de la distribution de produits de santé vétérinaire. Notre mission est de garantir la performance sanitaire des exploitations tout en veillant au bien-être animal.</p>
-          <p>Grâce à une équipe d'experts passionnés, nous offrons un conseil de pointe adapté aux réalités du terrain et aux exigences réglementaires en vigueur.</p>
-          <ul class="mission-list">
-            <li><div class="dot"></div><span>Sélection rigoureuse des laboratoires partenaires.</span></li>
-            <li><div class="dot"></div><span>Maîtrise totale de la chaîne logistique et du froid.</span></li>
-            <li><div class="dot"></div><span>Support technique réactif et personnalisé.</span></li>
-          </ul>
-        </div>
+      <div class="about-copy">
+        <p>PROVET Santé Animale s'engage aux côtés des éleveurs et des vétérinaires en proposant des solutions thérapeutiques et nutritionnelles rigoureusement sélectionnées.</p>
+        <p>Notre mission est de garantir la sécurité sanitaire, d'améliorer la productivité des élevages et de veiller au bien-être animal à travers des produits fiables et performants.</p>
+        <ul class="mission-list">
+          <li><div class="dot"></div><span>Sélection rigoureuse des laboratoires partenaires</span></li>
+          <li><div class="dot"></div><span>Accompagnement et conseil technique de proximité</span></li>
+          <li><div class="dot"></div><span>Logistique rapide et respectueuse de la chaîne de qualité</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
+  <!-- Sectors Section -->
   <section id="sectors">
     <div class="wrap">
       <div class="section-head">
-        <span class="tag">Nos Domaines</span>
-        <h2>Des solutions adaptées à chaque filière</h2>
-        <p>Une couverture complète des besoins en santé animale, de l'élevage intensif aux animaux de compagnie.</p>
+        <span class="tag">NOS SECTEURS</span>
+        <h2>Des solutions adaptées à chaque filière d'élevage</h2>
       </div>
       <div class="sector-row">
         <div class="sector-item">
-          <div class="sector-icon" style="background:var(--green-bright); border-radius:50%;"></div>
+          <div class="sector-icon">🐂</div>
           <div>
-            <h3>Ruminants & Bovins</h3>
-            <p>Programmes de prévention, vaccins, compléments nutritionnels et gestion de la reproduction.</p>
+            <h3>Ruminants</h3>
+            <p>Produits pour bovins, ovins et caprins : nutrition, prévention et soins spécifiques.</p>
           </div>
-          <div>
-            <p>Optimisation des performances laitières et de la croissance avec un suivi sanitaire irréprochable.</p>
-          </div>
+          <div><p>Optimisation de la production laitière et de la croissance.</p></div>
         </div>
         <div class="sector-item">
-          <div class="sector-icon" style="background:var(--green-deep); border-radius:50%;"></div>
+          <div class="sector-icon">🐓</div>
           <div>
-            <h3>Aviculture & Cuniculture</h3>
-            <p>Solutions de biosécurité, traitements ciblés et nutrition spécifique pour volailles et lapins.</p>
+            <h3>Aviculture</h3>
+            <p>Gamme complète pour volailles de chair et pondeuses.</p>
           </div>
-          <div>
-            <p>Prévention des pathologies collectives et amélioration des indices de conversion.</p>
-          </div>
+          <div><p>Biosecurité, vitamines, compléments et traitements ciblés.</p></div>
         </div>
         <div class="sector-item">
-          <div class="sector-icon" style="background:var(--gray-mid); border-radius:50%;"></div>
+          <div class="sector-icon">🐖</div>
           <div>
-            <h3>Animaux de Compagnie</h3>
-            <p>Gammes thérapeutiques, antiparasitaires externes/internes et hygiène vétérinaire.</p>
+            <h3>Porcins</h3>
+            <p>Programmes nutritionnels et sanitaires adaptés aux exigences des éleveurs.</p>
           </div>
-          <div>
-            <p>Produits de pointe pour les cliniques et cabinets vétérinaires urbains.</p>
-          </div>
+          <div><p>Amélioration des performances zootechniques.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt" id="products">
+  <!-- Products Section -->
+  <section id="products" class="section-alt">
     <div class="wrap">
       <div class="section-head">
-        <span class="tag">Portfolio</span>
-        <h2>Nos Gammes de Produits</h2>
-        <p>Un catalogue diversifié répondant aux exigences normatives internationales.</p>
+        <span class="tag">GAMME DE PRODUITS</span>
+        <h2>Ce que nous distribuons</h2>
       </div>
       <div class="product-grid">
         <div class="product-cell">
           <span class="idx">01</span>
-          <h3>Antibiotiques & Chimiothérapie</h3>
-          <p>Traitements ciblés à spectre large ou étroit pour le contrôle des infections bactériennes.</p>
+          <h3>Médicaments Vétérinaires</h3>
+          <p>Antibiotiques, antiparasitaires, anti-inflammatoires et vaccins de grandes marques.</p>
         </div>
         <div class="product-cell">
           <span class="idx">02</span>
-          <h3>Biologiques & Vaccins</h3>
-          <p>Immunisation active et protection contre les principales épizooties de la région.</p>
+          <h3>Compléments Nutritionnels</h3>
+          <p>Vitamines, minéraux et oligo-éléments pour booster la vitalité et la production.</p>
         </div>
         <div class="product-cell">
           <span class="idx">03</span>
-          <h3>Nutrition & Prémix</h3>
-          <p>Vitamines, oligo-éléments et acides aminés pour booster la vitalité et la production.</p>
+          <h3>Produits d'Hygiène</h3>
+          <p>Désinfectants pour bâtiments d'élevage et solutions de biosécurité avancées.</p>
         </div>
         <div class="product-cell">
           <span class="idx">04</span>
-          <h3>Antiparasitaires</h3>
-          <p>Lutte efficace contre les parasites internes (vers) et externes (tiques, puces, gale).</p>
+          <h3>Matériel de Soin</h3>
+          <p>Équipements et petit matériel vétérinaire pour le suivi quotidien des animaux.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="why">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="tag">Pourquoi nous choisir</span>
-        <h2>Votre partenaire de référence au quotidien</h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-item">
-          <h3>Traçabilité Garantie</h3>
-          <p>Suivi rigoureux de chaque lot depuis sa fabrication jusqu'à sa livraison finale sur le site client.</p>
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="tag">CONTACTEZ-NOUS</span>
+        <h2>Parlons de vos besoins</h2>
+        <p>Notre équipe est à votre disposition pour toute commande, conseil technique ou demande de partenariat.</p>
+        <div class="contact-line">
+          <span>📍 Adresse : Algérie</span>
         </div>
-        <div class="why-item">
-          <h3>Disponibilité Stock</h3>
-          <p>Une logistique performante assurant un réapprovisionnement rapide et sans rupture.</p>
+        <div class="contact-line">
+          <span>📞 Téléphone : +213 XX XX XX XX</span>
         </div>
-        <div class="why-item">
-          <h3>Conseil Expert</h3>
-          <p>Une équipe à votre écoute pour vous orienter vers les protocoles thérapeutiques les plus efficients.</p>
+        <div class="contact-line">
+          <span>✉️ Email : contact@provetsante.com</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section-alt" id="contact">
-    <div class="wrap">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <span class="tag">Contactez-nous</span>
-        <h2>Parlons de vos besoins professionnels</h2>
-          <p>Notre équipe commerciale et technique est à votre disposition pour toute commande ou demande d'information.</p>
-          <div class="contact-line">
-            <span>Adresse : Algérie</span>
-          </div>
-          <div class="contact-line">
-            <span>Email : contact@provetsante.com</span>
-          </div>
-        </div>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
+      <div>
+        <form class="contact-form" id="form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- استبدل YOUR_ACCESS_KEY_HERE بالكود اللي يوصلك في الإيمايل -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          
           <div class="form-row">
             <div class="form-field">
-              <label>Nom complet</label>
-              <input type="text" required placeholder="Votre nom">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" name="name" required placeholder="Votre nom">
             </div>
             <div class="form-field">
-              <label>Téléphone</label>
-              <input type="tel" required placeholder="Votre numéro">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="votre@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field full">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" required placeholder="Objet de votre message">
             </div>
           </div>
           <div class="form-field full" style="margin-bottom: 18px;">
-            <label>Email</label>
-            <input type="email" required placeholder="votre@email.com">
-          </div>
-          <div class="form-field full" style="margin-bottom: 24px;">
-            <label>Message</label>
-            <textarea required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Envoyer le message</button>
+          <div id="form-result"></div>
         </form>
       </div>
     </div>
@@ -559,10 +507,46 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 PROVET Santé Animale. Tous droits réservés.</p>
-      <p>Distributeur de produits vétérinaires</p>
     </div>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById('form');
+  const result = document.getElementById('form-result');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    result.textContent = "Envoi en cours...";
+
+    fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.textContent = "Message envoyé avec succès ! Nous vous contacterons bientôt.";
+                result.style.color = "var(--green-deep)";
+                form.reset();
+            } else {
+                result.textContent = json.message;
+                result.style.color = "red";
+            }
+        })
+        .error(function(error) {
+            result.textContent = "Une erreur est survenue !";
+            result.style.color = "red";
+        });
+  });
+</script>
 
 </body>
 </html>
