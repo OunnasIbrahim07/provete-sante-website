@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROVET Santé Animale — Distributeur de produits vétérinaires</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --green-deep:#4E9C33;
+    --green-bright:#86C540;
+    --green-pale:#EAF4E1;
+    --gray-dark:#4A4A4A;
+    --gray-mid:#8F958C;
+    --paper:#F7F9F4;
+    --white:#FFFFFF;
+    --ink:#2A2E27;
+    --line: rgba(42,46,39,0.12);
+    --radius: 6px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Libre Franklin', sans-serif;
+    color:var(--ink);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,249,244,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{height:44px; width:auto;}
+  .brand-text{font-family:'Libre Franklin'; font-weight:800; font-size:1.15rem; color:var(--gray-mid); letter-spacing:0.01em;}
+  .brand-text b{color:var(--green-deep); font-weight:900;}
+
+  nav.main-nav{display:flex; align-items:center; gap:34px;}
+  nav.main-nav a{
+    font-size:0.95rem; font-weight:500; color:var(--gray-dark);
+    position:relative; padding:4px 0;
+  }
+  nav.main-nav a:hover{color:var(--green-deep);}
+
+  .call-pill{
+    display:flex; align-items:center; gap:8px;
+    background:var(--green-deep); color:#fff;
+    padding:10px 18px; border-radius:999px;
+    font-weight:600; font-size:0.9rem;
+    white-space:nowrap;
+  }
+  .call-pill:hover{background:var(--ink);}
+
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 100px;
+  }
+  .hero-swoosh{
+    position:absolute; top:-120px; right:-180px;
+    width:640px; height:640px;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow-note{
+    font-size:0.95rem; color:var(--green-deep); font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:3.15rem; font-weight:800;
+    max-width:14ch;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--green-deep);
+  }
+  .hero p.lead{
+    font-size:1.15rem; color:var(--gray-dark);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:var(--radius);
+    font-weight:600; font-size:0.98rem;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary:hover{background:var(--green-deep);}
+  .btn-outline{border:1.5px solid var(--gray-mid); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--green-deep); color:var(--green-deep);}
+
+  .hero-stats{
+    display:flex; gap:36px; margin-top:52px; flex-wrap:wrap;
+  }
+  .hero-stats div{border-left:2px solid var(--green-bright); padding-left:14px;}
+  .hero-stats .num{font-family:'Libre Franklin'; font-weight:800; font-size:1.8rem; color:var(--ink);}
+  .hero-stats .label{font-size:0.85rem; color:var(--gray-mid);}
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .leaf-card{
+    background:var(--white);
+    border-radius:16px;
+    padding:44px;
+    box-shadow:0 24px 60px -20px rgba(42,46,39,0.18);
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+    max-width:340px;
+    border:1px solid var(--line);
+  }
+  .leaf-card img{width:150px;}
+  .leaf-card p{text-align:center; font-size:0.92rem; color:var(--gray-dark);}
+  .leaf-card .divider{width:44px; height:3px; background:var(--green-bright); border-radius:2px;}
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:640px; margin-bottom:56px;
+  }
+  .section-head .tag{color:var(--green-deep); font-weight:600; font-size:0.95rem; margin-bottom:10px; display:block;}
+  .section-head h2{font-size:2.15rem; font-weight:700;}
+  .section-head p{margin-top:14px; color:var(--gray-dark); font-size:1.05rem;}
+
+  .section-alt{background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start;
+  }
+  .about-figure{
+    background:var(--green-pale);
+    border-radius:16px;
+    padding:40px;
+    position:relative;
+  }
+  .about-figure svg{width:100%; height:auto;}
+  .about-copy p{margin-bottom:18px; color:var(--gray-dark); font-size:1.03rem;}
+  .about-copy p:last-child{margin-bottom:0;}
+  .mission-list{margin-top:26px; display:flex; flex-direction:column; gap:16px;}
+  .mission-list li{display:flex; gap:14px; align-items:flex-start;}
+  .mission-list .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--green-deep);
+    margin-top:9px; flex-shrink:0;
+  }
+  .mission-list span{color:var(--ink); font-weight:500;}
+
+  /* ---------- Sectors ---------- */
+  .sector-row{
+    border-top:1px solid var(--line);
+  }
+  .sector-item{
+    display:grid;
+    grid-template-columns:60px 1fr 1fr;
+    gap:28px;
+    padding:30px 0;
+    border-bottom:1px solid var(--line);
+    align-items:center;
+  }
+  .sector-item .sector-icon{
+    width:44px; height:44px;
+  }
+  .sector-item h3{font-size:1.2rem; font-weight:700;}
+  .sector-item p{color:var(--gray-dark); font-size:0.98rem;}
+
+  /* ---------- Products ---------- */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  .product-cell{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:36px 28px;
+    transition:background .15s ease;
+  }
+  .product-cell:hover{background:var(--green-pale);}
+  .product-cell .idx{
+    font-family:'Libre Franklin'; font-weight:800; font-size:0.85rem;
+    color:var(--green-bright); margin-bottom:16px; display:block;
+  }
+  .product-cell h3{font-size:1.08rem; font-weight:700; margin-bottom:10px;}
+  .product-cell p{font-size:0.92rem; color:var(--gray-dark);}
+
+  /* ---------- Why us ---------- */
+  .why-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:44px;
+  }
+  .why-item h3{
+    font-size:1.1rem; font-weight:700; margin-bottom:10px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .why-item h3::before{
+    content:''; width:8px; height:22px; background:var(--green-bright); border-radius:3px; display:inline-block;
+  }
+  .why-item p{color:var(--gray-dark); font-size:0.98rem;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;
+  }
+  .contact-info h2{font-size:2rem; margin-bottom:16px;}
+  .contact-info > p{color:var(--gray-dark); margin-bottom:32px; max-width:40ch;}
+  .contact-line{
+    display:flex; gap:14px; align-items:center;
+    padding:16px 0; border-top:1px solid var(--line);
+  }
+  .contact-line:last-child{border-bottom:1px solid var(--line);}
+  .contact-line svg{width:20px; height:20px; color:var(--green-deep); flex-shrink:0;}
+  .contact-line span{font-weight:600;}
+
+  form.contact-form{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:36px;
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .form-field{display:flex; flex-direction:column; gap:6px;}
+  .form-field.full{grid-column:1 / -1;}
+  .form-field label{font-size:0.85rem; font-weight:600; color:var(--gray-dark);}
+  .form-field input, .form-field select, .form-field textarea{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:11px 14px;
+    font-family:inherit; font-size:0.95rem;
+    background:var(--paper);
+  }
+  .form-field textarea{resize:vertical; min-height:100px;}
+  form.contact-form .btn{width:100%; text-align:center; border:none; cursor:pointer;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink); color:#EDEFEA;
+    padding:52px 0 28px;
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:30px;
+    padding-bottom:34px; border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .footer-brand{display:flex; align-items:center; gap:10px;}
+  .footer-brand img{height:36px; filter:brightness(0) invert(1);}
+  .footer-brand span{font-family:'Libre Franklin'; font-weight:800; color:#fff;}
+  footer nav{display:flex; gap:28px; flex-wrap:wrap;}
+  footer nav a{color:#C9CDC4; font-size:0.92rem;}
+  footer nav a:hover{color:var(--green-bright);}
+  .footer-bottom{
+    padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.85rem; color:#8B9186;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:920px){
+    nav.main-nav{display:none;}
+    .menu-toggle{display:block;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-visual{order:-1; margin-bottom:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .sector-item{grid-template-columns:1fr; text-align:left;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr; gap:30px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .hero h1{font-size:2.3rem;}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 20px;}
+    .header-inner{padding:12px 20px;}
+    .hero{padding:56px 0 70px;}
+    .product-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:24px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important; animation:none !important;}
+  }
+
+  .reveal{opacity:0; transform:translateY(14px); animation:rise .7s ease forwards;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-text"><b>PROVET</b> Santé Animale</span>
+    </a>
+    <nav class="main-nav">
+      <a href="#about">À propos</a>
+      <a href="#sectors">Secteurs</a>
+      <a href="#products">Produits</a>
+      <a href="#why">Engagements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:+213" class="call-pill">
+      <span>Appeler</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow-note">Solutions vétérinaires professionnelles</span>
+          <h1>La santé et le bien-être animal au <em>cœur</em> de notre expertise</h1>
+          <p class="lead">Distributeur de confiance en produits pharmaceutiques, biologiques et nutritionnels pour l'élevage et les animaux de compagnie.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Nous contacter</a>
+            <a href="#products" class="btn btn-outline">Découvrir nos gammes</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="num">+15</div>
+              <div class="label">Ans d'expérience</div>
+            </div>
+            <div>
+              <div class="num">100%</div>
+              <div class="label">Conforme & Sécurisé</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="leaf-card">
+            <div class="divider"></div>
+            <p>Accompagnement technique et scientifique dédié aux professionnels de la santé animale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">À propos de PROVET</span>
+        <h2>Un engagement constant pour la qualité de l'élevage</h2>
+        <p>Nous mettons à disposition des vétérinaires et des éleveurs des solutions innovantes, rigoureusement sélectionnées auprès des meilleurs laboratoires mondiaux.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-figure">
+          <h3>Expertise & Rigueur</h3>
+          <p style="margin-top: 15px;">Notre structure assure une traçabilité irréprochable et un stockage respectant les normes les plus strictes de la chaîne du froid.</p>
+        </div>
+        <div class="about-copy">
+          <p>PROVET Santé Animale s'impose comme un acteur clé de la distribution de produits de santé vétérinaire. Notre mission est de garantir la performance sanitaire des exploitations tout en veillant au bien-être animal.</p>
+          <p>Grâce à une équipe d'experts passionnés, nous offrons un conseil de pointe adapté aux réalités du terrain et aux exigences réglementaires en vigueur.</p>
+          <ul class="mission-list">
+            <li><div class="dot"></div><span>Sélection rigoureuse des laboratoires partenaires.</span></li>
+            <li><div class="dot"></div><span>Maîtrise totale de la chaîne logistique et du froid.</span></li>
+            <li><div class="dot"></div><span>Support technique réactif et personnalisé.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sectors">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Nos Domaines</span>
+        <h2>Des solutions adaptées à chaque filière</h2>
+        <p>Une couverture complète des besoins en santé animale, de l'élevage intensif aux animaux de compagnie.</p>
+      </div>
+      <div class="sector-row">
+        <div class="sector-item">
+          <div class="sector-icon" style="background:var(--green-bright); border-radius:50%;"></div>
+          <div>
+            <h3>Ruminants & Bovins</h3>
+            <p>Programmes de prévention, vaccins, compléments nutritionnels et gestion de la reproduction.</p>
+          </div>
+          <div>
+            <p>Optimisation des performances laitières et de la croissance avec un suivi sanitaire irréprochable.</p>
+          </div>
+        </div>
+        <div class="sector-item">
+          <div class="sector-icon" style="background:var(--green-deep); border-radius:50%;"></div>
+          <div>
+            <h3>Aviculture & Cuniculture</h3>
+            <p>Solutions de biosécurité, traitements ciblés et nutrition spécifique pour volailles et lapins.</p>
+          </div>
+          <div>
+            <p>Prévention des pathologies collectives et amélioration des indices de conversion.</p>
+          </div>
+        </div>
+        <div class="sector-item">
+          <div class="sector-icon" style="background:var(--gray-mid); border-radius:50%;"></div>
+          <div>
+            <h3>Animaux de Compagnie</h3>
+            <p>Gammes thérapeutiques, antiparasitaires externes/internes et hygiène vétérinaire.</p>
+          </div>
+          <div>
+            <p>Produits de pointe pour les cliniques et cabinets vétérinaires urbains.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Portfolio</span>
+        <h2>Nos Gammes de Produits</h2>
+        <p>Un catalogue diversifié répondant aux exigences normatives internationales.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-cell">
+          <span class="idx">01</span>
+          <h3>Antibiotiques & Chimiothérapie</h3>
+          <p>Traitements ciblés à spectre large ou étroit pour le contrôle des infections bactériennes.</p>
+        </div>
+        <div class="product-cell">
+          <span class="idx">02</span>
+          <h3>Biologiques & Vaccins</h3>
+          <p>Immunisation active et protection contre les principales épizooties de la région.</p>
+        </div>
+        <div class="product-cell">
+          <span class="idx">03</span>
+          <h3>Nutrition & Prémix</h3>
+          <p>Vitamines, oligo-éléments et acides aminés pour booster la vitalité et la production.</p>
+        </div>
+        <div class="product-cell">
+          <span class="idx">04</span>
+          <h3>Antiparasitaires</h3>
+          <p>Lutte efficace contre les parasites internes (vers) et externes (tiques, puces, gale).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Pourquoi nous choisir</span>
+        <h2>Votre partenaire de référence au quotidien</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <h3>Traçabilité Garantie</h3>
+          <p>Suivi rigoureux de chaque lot depuis sa fabrication jusqu'à sa livraison finale sur le site client.</p>
+        </div>
+        <div class="why-item">
+          <h3>Disponibilité Stock</h3>
+          <p>Une logistique performante assurant un réapprovisionnement rapide et sans rupture.</p>
+        </div>
+        <div class="why-item">
+          <h3>Conseil Expert</h3>
+          <p>Une équipe à votre écoute pour vous orienter vers les protocoles thérapeutiques les plus efficients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="tag">Contactez-nous</span>
+        <h2>Parlons de vos besoins professionnels</h2>
+          <p>Notre équipe commerciale et technique est à votre disposition pour toute commande ou demande d'information.</p>
+          <div class="contact-line">
+            <span>Adresse : Algérie</span>
+          </div>
+          <div class="contact-line">
+            <span>Email : contact@provetsante.com</span>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Nom complet</label>
+              <input type="text" required placeholder="Votre nom">
+            </div>
+            <div class="form-field">
+              <label>Téléphone</label>
+              <input type="tel" required placeholder="Votre numéro">
+            </div>
+          </div>
+          <div class="form-field full" style="margin-bottom: 18px;">
+            <label>Email</label>
+            <input type="email" required placeholder="votre@email.com">
+          </div>
+          <div class="form-field full" style="margin-bottom: 24px;">
+            <label>Message</label>
+            <textarea required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span>PROVET Santé Animale</span>
+      </div>
+      <nav>
+        <a href="#about">À propos</a>
+        <a href="#sectors">Secteurs</a>
+        <a href="#products">Produits</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PROVET Santé Animale. Tous droits réservés.</p>
+      <p>Distributeur de produits vétérinaires</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
